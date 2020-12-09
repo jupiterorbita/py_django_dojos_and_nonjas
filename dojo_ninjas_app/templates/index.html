@@ -17,6 +17,8 @@
       }
       .ninjas {
         border: 1px solid black;
+        padding-left:40px;
+        margin-bottom: 30px;
       }
       .left{
         width: 50%;
@@ -87,9 +89,16 @@
         <!-- <p>{ all_the_dojos } => {{ all_the_dojos }}</p> -->
         <hr />
 
+
         {% for dojo in all_the_dojos %}
-        <!-- <p># of ninjas-> {{first}}{{dojo.id}}{{last}}</p> -->
-        <h5>{{ dojo.name }} id={{dojo.id}} <a href="/delete/{{dojo.id}}">delete</a></h5>
+        <!-- <p> {{ dojo.ninjas.count }} id= {{dojo.id}} </p> -->
+        <h5>{{ dojo.name }} has {{dojo.ninjas.count}} 
+          {% if dojo.ninjas.count < 2 %}
+          ninja
+          {% else %} 
+          ninjas
+          {% endif %} 
+          <a href="/delete/{{dojo.id}}">delete</a></h5>
         <ul>
 
           {% for ninja in dojo.ninjas.all %}
